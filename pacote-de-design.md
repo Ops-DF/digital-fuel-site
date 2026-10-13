@@ -356,6 +356,22 @@ Pedido de 13/10/2026: outra versão com a skill, com imagens da equipe e uma ten
 - **Celular e movimento reduzido:** a fotografia real, parada. O vídeo não é baixado.
 - **Limites honestos:** o modelo entrega 720p, então em tela grande a imagem fica um pouco suave. As fotos das seções continuam pequenas.
 
+## Versão 4: luz do dia (rota /site-4/)
+
+Pedido de 13/10/2026: outra versão, feita com o Claude Design. Mesmo texto e mesmo SEO das outras três.
+
+- **Como foi feita:** não existe uma skill instalada com o nome "Claude Design", então foi usado o próprio Claude Design, a tela de design do Claude. O desenho da página inteira está lá, em português, no projeto "Digital Fuel Site 4" (https://claude.ai/artifact/MrAQfrmUWym2z1D92Ktdob, privado da conta da Digital Fuel). A página real foi montada a partir desse desenho.
+- **Onde vive:** `site/site-4/index.html` e `site/site-4/pt-br/index.html`, gerados por `page4(t)`. Tem folha e script próprios, `assets/site4.css` e `assets/site4.js`, e não depende de `site.css` nem de `site.js`.
+- **Fora do Google por enquanto,** como as versões 2 e 3: `noindex` e fora do `sitemap.xml` até a escolha.
+- **Direção:** a única versão clara. Fundo quase branco (`#f5f5f3`), texto quase preto (`#121316`), o laranja da marca (`#ff3600`) como única cor de destaque, e blocos escuros para dar ritmo (Performance, Accelerate e rodapé).
+- **Fontes:** Bricolage Grotesque nos títulos e Figtree no texto. As outras versões usam Archivo, Instrument Sans e DM Mono.
+- **O que fica na memória:** duas pílulas dentro do título, uma com a foto de alguém do time depois de "A gente" e uma laranja com a gota antes de "combustível". O fechamento é um cartão laranja inteiro, "Vamos encher o tanque".
+- **Topo:** sem animação presa ao scroll. Em tela larga com mouse, o vídeo colorido do time toca uma vez e para no olhar para a câmera. No celular e com movimento reduzido aparece o último quadro, parado, e o vídeo não é baixado.
+- **Logotipo:** `assets/logo-digital-fuel-dark.png` é o logotipo original com as letras trocadas para escuro, para fundo claro. A chama não muda. O arquivo de letras brancas continua no rodapé.
+- **Seções:** selos sobre branco (os arquivos já têm fundo branco), retratos em forma de cápsula no Sobre, dor e resposta lado a lado, serviços em dois painéis empilhados, passos com foto e número, programas com a barra do tanque, perguntas em sanfona.
+- **Sem o botão "segure para dar a partida":** essa brincadeira fica só nas versões 1 a 3.
+- **Contraste conferido:** texto pequeno em laranja usa o tom escuro `#c92a00` sobre claro. Texto sobre o laranja é sempre o quase preto `#160905`.
+
 ## Confirmado pela Digital Fuel em 12/10/2026
 
 - O time atende em português e em inglês.
@@ -369,5 +385,5 @@ Pedido de 13/10/2026: outra versão com a skill, com imagens da equipe e uma ten
 - Depoimentos e números reais para a seção de prova, quando houver.
 - Página de política de privacidade: o site atual lista o link, mas a página não existe.
 - Confirmar o domínio do ar antes de publicar (as páginas apontam para digitalfuelagency.com).
-- Escolher entre a versão 1 (raiz), a versão 2 (`/site-2/`) e a versão 3 (`/site-3/`).
+- Escolher entre a versão 1 (raiz), a versão 2 (`/site-2/`), a versão 3 (`/site-3/`) e a versão 4 (`/site-4/`).
 - Nomes e cargos das pessoas das fotos, e as fotos originais em alta, se a versão 2 seguir.

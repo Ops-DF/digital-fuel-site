@@ -180,6 +180,7 @@ const T = {
       steps: ['Two members of the Digital Fuel team in a strategy conversation', 'A Digital Fuel team member smiling at a laptop during a planning session', 'A Digital Fuel team member reviewing campaign dashboards on two screens'],
       people: 'Real people on the other end.'
     },
+    v4: { h1: ['Your business is the engine.', 'We', 'bring the', 'fuel.'] },   // hero.h1 cortado onde entram as duas pílulas
     schema: {
       orgDesc: 'Digital Fuel is a digital content and performance marketing agency based in Marlborough, Massachusetts. It plans, builds and runs online advertising for companies across the United States, with its deepest experience in home renovation and construction.',
       slogan: 'Creativity is the spark. Performance keeps it burning.',
@@ -336,6 +337,7 @@ const T = {
       steps: ['Dois integrantes do time da Digital Fuel em uma conversa de estratégia', 'Integrante do time da Digital Fuel sorrindo diante do notebook em uma sessão de planejamento', 'Integrante do time da Digital Fuel analisando painéis de campanha em duas telas'],
       people: 'Gente de verdade do outro lado.'
     },
+    v4: { h1: ['Sua empresa é o motor.', 'A gente', 'traz o', 'combustível.'] },
     schema: {
       orgDesc: 'A Digital Fuel é uma agência de conteúdo digital e marketing de performance com sede em Marlborough, Massachusetts. Planeja, cria e roda a publicidade online de empresas em todos os Estados Unidos, com experiência mais profunda em reforma e construção.',
       slogan: 'A criatividade é a faísca. A performance mantém aceso.',
@@ -792,6 +794,295 @@ ${SOCIAL.map(([n, u]) => `          <li><a href="${u}" rel="noopener me">${n}</a
 `;
 }
 
+// Versão 4, "Luz do dia": página clara desenhada no Claude Design. Mesmo texto e mesmo SEO das outras,
+// com marcação, folha (site4.css) e script (site4.js) próprios.
+const CHECK = '<svg class="check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const DROP = 'M12 2.5c3.6 4.3 6.2 7.5 6.2 10.9a6.2 6.2 0 0 1-12.4 0C5.8 10 8.4 6.8 12 2.5z';
+const SPARK = 'M12 3v5M12 16v5M3 12h5M16 12h5M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18';
+const FILM_ON = '(min-width: 900px) and (hover: hover) and (prefers-reduced-motion: no-preference)';   // onde o vídeo do time toca
+
+function page4(t) {
+  const A = '../' + t.assets, base = ORIGIN + '/site-4', url = base + t.path;
+  const tel = `<a href="${PHONE.href}">${PHONE.text}</a>`, mail = `<a href="mailto:${EMAIL}">${EMAIL}</a>`;
+  const [l1, we, verb, fuel] = t.v4.h1;
+  if (t.v4.h1.join(' ') !== t.hero.h1) throw new Error('v4.h1 saiu de sincronia com hero.h1 em ' + t.lang);
+  const svc = items => items.map(([h, p]) => `          <li><h4>${e(h)}</h4><p>${e(p)}</p></li>`).join('\n');
+  const eyebrow = s => `<p class="eyebrow">${e(s)}</p>`;
+  const langLink = cls => `<a${cls ? ` class="${cls}"` : ''} href="${t.alt.href}" hreflang="${t.alt.lang}" lang="${t.alt.lang}">`;
+
+  return `<!doctype html>
+<html lang="${t.lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${e(t.title)}</title>
+<meta name="description" content="${e(t.desc)}">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#f5f5f3">
+<meta name="color-scheme" content="light">
+<meta name="geo.region" content="US-MA">
+<meta name="geo.placename" content="Marlborough">
+<!-- DEPLOY STEP: confirme o domínio do ar. canonical, hreflang, og:url, og:image, sitemap.xml, robots.txt e llms.txt usam ${ORIGIN} -->
+<link rel="canonical" href="${url}">
+<link rel="alternate" hreflang="en" href="${base}/">
+<link rel="alternate" hreflang="pt-BR" href="${base}/pt-br/">
+<link rel="alternate" hreflang="x-default" href="${base}/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Digital Fuel">
+<meta property="og:title" content="${e(t.title)}">
+<meta property="og:description" content="${e(t.desc)}">
+<meta property="og:url" content="${url}">
+<meta property="og:image" content="${ORIGIN}/assets/og-digital-fuel.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${e(t.ogImageAlt)}">
+<meta property="og:locale" content="${t.ogLocale}">
+<meta property="og:locale:alternate" content="${t.ogAlt}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${e(t.title)}">
+<meta name="twitter:description" content="${e(t.desc)}">
+<meta name="twitter:image" content="${ORIGIN}/assets/og-digital-fuel.jpg">
+<link rel="icon" type="image/png" href="${A}favicon.png">
+<link rel="apple-touch-icon" href="${A}apple-touch-icon.png">
+<script>(function(){var d=document.documentElement;d.className+=" js"+(window.matchMedia(${JSON.stringify(FILM_ON)}).matches?" can-film":"");setTimeout(function(){if(!window.__df4)d.className+=" no-reveal"},4000)})()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=Figtree:wght@400..700&amp;display=swap">
+<link rel="stylesheet" href="${A}site4.css">
+<script type="application/ld+json">${schema(t, url)}</script>
+</head>
+<body>
+<a class="skip" href="#main">${e(t.skip)}</a>
+
+<div class="navwrap">
+<header class="nav">
+  <a class="nav__brand" href="${t.home}" aria-label="${e(t.nav.brand)}"><img src="${A}logo-digital-fuel-dark.png" alt="Digital Fuel" width="470" height="127"></a>
+  <nav class="nav__links" id="nav-links" aria-label="${e(t.nav.aria)}">
+    <a href="#services">${e(t.nav.services)}</a>
+    <a href="#industries">${e(t.nav.industries)}</a>
+    <a href="#programs">${e(t.nav.programs)}</a>
+    <a href="#how">${e(t.nav.how)}</a>
+    <a href="#faq">${e(t.nav.faq)}</a>
+    ${langLink('nav__alt')}${e(t.alt.label)}</a>
+  </nav>
+  ${langLink('nav__lang')}<span class="long">${e(t.alt.label)}</span><span class="short">${t.alt.short}</span></a>
+  <a class="btn btn--sm" href="#contact"><span class="long">${e(t.nav.cta)}</span><span class="short">${e(t.nav.ctaShort)}</span></a>
+  <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="${e(t.nav.menu)}"><span></span><span></span></button>
+</header>
+</div>
+
+<main id="main" tabindex="-1">
+
+  <section class="hero wrap" id="top" aria-label="${e(t.hero.aria)}">
+    <p class="chip">${e(t.hero.kicker)}</p>
+    <h1><span class="l">${e(l1)}</span> <span class="l">${e(we)} <img class="pill" src="${A}team-step-2.jpg" alt="" width="491" height="343" decoding="async"> ${e(verb)} <span class="pill pill--fuel" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="${DROP}"/></svg></span> ${e(fuel)}</span></h1>
+    <div class="hero__row">
+      <div class="hero__copy">
+        <p class="hero__lead">${e(t.hero.b4[0])}</p>
+        <p class="hero__sub">${e(t.hero.b4[1])}</p>
+        <p class="hero__cta"><a class="btn" href="#contact">${e(t.hero.cta)}</a> <a class="link" href="#how">${e(t.hero.link)}</a></p>
+      </div>
+      <figure class="film">
+        <picture><source media="${FILM_ON}" srcset="${A}team-film-poster.jpg"><img src="${A}team-film-ending.jpg" alt="${e(t.team.tableAlt)}" width="1280" height="720" fetchpriority="high" decoding="async"></picture>
+        <video data-src="${A}team-film.mp4" muted playsinline disablepictureinpicture preload="none" aria-hidden="true" tabindex="-1"></video>
+      </figure>
+    </div>
+    <div class="beats">
+      <div class="beat"><span class="beat__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="${SPARK}"/></svg></span><div><p class="beat__t">${e(t.hero.b2[0])}</p><p>${e(t.hero.b2[1])}</p></div></div>
+      <div class="beat beat--flame"><span class="beat__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="${DROP}"/></svg></span><div><p class="beat__t">${e(t.hero.b3[0])}</p><p>${e(t.hero.b3[1])}</p></div></div>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="${e(t.trust.aria)}">
+    <div class="wrap trust__row">
+      <p class="trust__stat">${t.trust.stat}</p>
+      <ul class="badges">
+${BADGES.map((f, i) => { const [w, h] = BADGE_SIZE[f] || [474, 184]; return `        <li><img src="${A}badges/${f}" alt="${e(t.trust.badges[i])}" width="${w}" height="${h}" loading="lazy" decoding="async"></li>`; }).join('\n')}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec wrap about" id="about">
+    <div class="about__row">
+      <div class="about__copy" data-reveal>
+        ${eyebrow(t.about.eyebrow)}
+        <h2>${e(t.about.h2)}</h2>
+        <p class="lede">${e(t.about.p)}</p>
+      </div>
+      <figure class="capsules" data-reveal><img src="${A}team-call.jpg" alt="${e(t.team.callAlt)}" width="497" height="1024" loading="lazy" decoding="async"><img src="${A}team-plan.jpg" alt="${e(t.team.planAlt)}" width="497" height="1024" loading="lazy" decoding="async"></figure>
+    </div>
+    <aside class="spec" aria-labelledby="spec-title" data-reveal>
+      <h3 class="label" id="spec-title">${e(t.about.specTitle)}</h3>
+      <dl>
+${t.about.spec.map(([k, v]) => `        <div><dt>${e(k)}</dt><dd>${e(v)}</dd></div>`).join('\n')}
+      </dl>
+    </aside>
+  </section>
+
+  <section class="band" id="why">
+    <div class="sec wrap">
+      <div data-reveal>
+        ${eyebrow(t.pains.eyebrow)}
+        <h2>${e(t.pains.h2)}</h2>
+      </div>
+      <ol class="pairs">
+${t.pains.pairs.map(([p, f]) => `        <li class="pair" data-reveal><p class="pain">${e(p)}</p><p class="fix">${CHECK}<span>${e(f)}</span></p></li>`).join('\n')}
+      </ol>
+      <p class="closer" data-reveal>${e(t.pains.closer)}</p>
+    </div>
+  </section>
+
+  <section class="sec wrap services" id="services">
+    <header data-reveal>
+      ${eyebrow(t.services.eyebrow)}
+      <h2>${e(t.services.h2)}</h2>
+      <p class="lede">${e(t.services.lede)}</p>
+    </header>
+    <div class="halves">
+      <div class="half half--spark" data-reveal>
+        <h3 class="half__title"><span>${e(t.services.spark.label)}</span> ${e(t.services.spark.title)}</h3>
+        <ul class="svc">
+${svc(t.services.spark.items)}
+        </ul>
+      </div>
+      <div class="half half--flame" data-reveal>
+        <h3 class="half__title"><span>${e(t.services.flame.label)}</span> ${e(t.services.flame.title)}</h3>
+        <ul class="svc">
+${svc(t.services.flame.items)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet" id="how">
+    <div class="sec wrap">
+      <div class="how__head" data-reveal>
+        <div>
+          ${eyebrow(t.how.eyebrow)}
+          <h2>${e(t.how.h2)}</h2>
+        </div>
+        <a class="btn" href="#contact">${e(t.how.cta)}</a>
+      </div>
+      <ol class="steps">
+${t.how.steps.map(([h, p], i) => `        <li class="step" data-reveal><figure class="step__ph"><img src="${A}team-step-${i + 1}.jpg" alt="${e(t.team.steps[i])}" width="491" height="343" loading="lazy" decoding="async"><span class="step__n" aria-hidden="true">${i + 1}</span></figure><h3>${e(h)}</h3><p>${e(p)}</p></li>`).join('\n')}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec wrap industries" id="industries">
+    <div data-reveal>
+      ${eyebrow(t.industries.eyebrow)}
+      <h2>${e(t.industries.h2)}</h2>
+    </div>
+    <div class="bento" data-reveal>
+      <article class="tile tile--feature">
+        <h3>${e(t.industries.feature[0])}</h3>
+        <p>${e(t.industries.feature[1])}</p>
+        <span class="label">${e(t.industries.logosLabel)}</span>
+        <ul class="logos">
+${CLIENTS.map(([f, n]) => `          <li><img src="${A}clients/${f}.jpg" alt="${e(t.industries.logoAlt(n))}" width="422" height="198" loading="lazy" decoding="async"></li>`).join('\n')}
+        </ul>
+      </article>
+      <div class="tiles">
+${t.industries.tiles.map(([h, p]) => `        <article class="tile"><h3>${e(h)}</h3><p>${e(p)}</p></article>`).join('\n')}
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="programs">
+    <div class="sec wrap">
+      <header data-reveal>
+        ${eyebrow(t.programs.eyebrow)}
+        <h2>${e(t.programs.h2)}</h2>
+        <p class="lede">${e(t.programs.lede)}</p>
+      </header>
+      <div class="tiers" data-reveal>
+${t.programs.tiers.map(r => `        <article class="tier${r.top ? ' tier--top' : ''}" style="--level:${r.level}">
+          <div class="tier__head"><h3>${e(r.name)}</h3><p class="tier__tag">${e(r.tag)}</p></div>
+          <div class="tank" aria-hidden="true"><i></i></div>${r.plus ? `\n          <p class="tier__plus">${e(r.plus)}</p>` : ''}
+          <ul>
+${r.items.map(x => `            <li>${CHECK}<span>${e(x)}</span></li>`).join('\n')}
+          </ul>
+          <a class="btn${r.top ? '' : ' btn--ghost'}" href="#contact">${e(t.programs.cta)}</a>
+        </article>`).join('\n')}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap faq" id="faq">
+    <div class="faq__grid">
+      <div class="faq__head" data-reveal>
+        ${eyebrow(t.faq.eyebrow)}
+        <h2>${e(t.faq.h2)}</h2>
+      </div>
+      <div class="faq__list" data-reveal>
+${t.faq.items.map(([q, a], i) => `        <details${i === 0 ? ' open' : ''}><summary><h3>${e(q)}</h3></summary><p>${e(a)}</p></details>`).join('\n')}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap contact" id="contact">
+    <div class="tankcard" data-reveal>
+      <div class="tankcard__copy">
+        ${eyebrow(t.contact.eyebrow)}
+        <h2>${e(t.contact.h2)}</h2>
+        <p class="lede">${e(t.contact.lede)}</p>
+        <p class="contact__alt">${t.contact.alt(tel, mail)}</p>
+        <address><a href="${MAP}" rel="noopener">2 Mt Royal Ave, Suite 210<br>Marlborough, MA 01752</a></address>
+        <figure class="people"><span><img src="${A}team-call.jpg" alt="" width="497" height="1024" loading="lazy" decoding="async"><img src="${A}team-plan.jpg" alt="" width="497" height="1024" loading="lazy" decoding="async"></span><figcaption>${e(t.team.people)}</figcaption></figure>
+      </div>
+      <div class="formcard">
+        <iframe src="https://api.leadconnectorhq.com/widget/form/${FORM}" id="inline-${FORM}" title="${e(t.contact.formTitle)}" loading="lazy" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated" data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Lead Sales - Form" data-height="1010" data-layout-iframe-id="inline-${FORM}" data-form-id="${FORM}"></iframe>
+        <p class="formcard__note">${e(t.contact.note)}</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <img src="${A}logo-digital-fuel.png" alt="Digital Fuel" width="470" height="127" loading="lazy" decoding="async">
+        <p>${e(t.foot.tagline)}</p>
+      </div>
+      <nav aria-label="${e(t.foot.aria)}">
+        <h2>${e(t.foot.explore)}</h2>
+        <ul>
+          <li><a href="#services">${e(t.nav.services)}</a></li>
+          <li><a href="#industries">${e(t.nav.industries)}</a></li>
+          <li><a href="#programs">${e(t.nav.programs)}</a></li>
+          <li><a href="#how">${e(t.nav.how)}</a></li>
+          <li><a href="#faq">${e(t.nav.faq)}</a></li>
+          <li>${langLink('')}${e(t.alt.label)}</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>${e(t.foot.contact)}</h2>
+        <address>
+          <a href="${MAP}" rel="noopener">2 Mt Royal Ave, Suite 210<br>Marlborough, MA 01752</a><br>
+          ${tel}<br>
+          ${mail}
+        </address>
+      </div>
+      <div>
+        <h2>${e(t.foot.follow)}</h2>
+        <ul>
+${SOCIAL.map(([n, u]) => `          <li><a href="${u}" rel="noopener me">${n}</a></li>`).join('\n')}
+        </ul>
+      </div>
+    </div>
+    <p class="foot__legal"><span>${e(t.foot.rights)}</span><span>${e(t.foot.marks)}</span><time datetime="${UPDATED}">${e(t.foot.updated)}</time></p>
+  </div>
+</footer>
+
+<script src="${A}site4.js" defer></script>
+</body>
+</html>
+`;
+}
+
 function llms() {
   const t = T.en;
   const svc = [...t.services.spark.items, ...t.services.flame.items];
@@ -874,10 +1165,12 @@ ${alt}
 mkdirSync(join(SITE, 'pt-br'), { recursive: true });
 mkdirSync(join(SITE, 'site-2', 'pt-br'), { recursive: true });
 mkdirSync(join(SITE, 'site-3', 'pt-br'), { recursive: true });
+mkdirSync(join(SITE, 'site-4', 'pt-br'), { recursive: true });
 const out = [
   ['index.html', page(T.en)], ['pt-br/index.html', page(T.pt)],
   ['site-2/index.html', page(T.en, 2)], ['site-2/pt-br/index.html', page(T.pt, 2)],
   ['site-3/index.html', page(T.en, 3)], ['site-3/pt-br/index.html', page(T.pt, 3)],   // versão 3, o time em vídeo, fora do índice de busca   // versão 2, com as fotos do time, fora do índice de busca
+  ['site-4/index.html', page4(T.en)], ['site-4/pt-br/index.html', page4(T.pt)],   // versão 4, clara, desenhada no Claude Design, fora do índice de busca
   ['llms.txt', llms()], ['robots.txt', robots], ['sitemap.xml', sitemap]
 ];
 for (const [name, text] of out) { writeFileSync(join(SITE, name), text, 'utf8'); console.log('ok', name, Buffer.byteLength(text), 'bytes'); }
