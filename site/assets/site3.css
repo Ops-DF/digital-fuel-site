@@ -1,0 +1,96 @@
+/* Digital Fuel, version 3: the team on film. Loaded after site.css and only changes what differs.
+   A black and white documentary world, with the flame as the only colour on the page. */
+:root{
+  --canvas:#0d0d0e;
+  --panel:#151516;
+  --panel-2:#1d1d1f;
+  --flame-blue:#dcd9d3;   /* in this version the second tone is paper white */
+  --line:#2b2b2e;
+  --line-strong:#57575c;
+  --text-secondary:#adadb1;
+  --text-primary:#f4f3f0;
+  --slant:polygon(14.1% 0,100% 0,85.9% 100%,0 100%);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.ambient::before{background:radial-gradient(closest-side,rgba(255,255,255,.035),rgba(255,255,255,0))}
+.nav::before{background:rgba(13,13,14,.86)}
+.scrub .nav::before{opacity:1;background:rgba(13,13,14,.74)}   /* over the film the menu always sits on its own bar */
+.scrub .nav.is-solid::before{background:rgba(13,13,14,.88)}
+.trust{background:rgba(21,21,22,.72)}
+.spec{background:linear-gradient(160deg,rgba(29,29,31,.96),rgba(21,21,22,.96))}
+.how{background:linear-gradient(to bottom,rgba(21,21,22,0),rgba(21,21,22,.82) 16%,rgba(21,21,22,.82) 84%,rgba(21,21,22,0))}
+.tile--feature{background:linear-gradient(150deg,#232325,#151516 60%)}
+.tier--top{background:linear-gradient(170deg,#262628,#151516 55%)}
+.foot{background:rgba(9,9,10,.9)}
+.pain,.foot__legal{color:#97979c}
+
+/* ---------- hero: the team film, scrubbed by scroll ---------- */
+.hero--film .poster{background-image:url(team-film-poster.jpg);background-position:50% 40%}
+.hero--film .stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background-image:var(--grain);mix-blend-mode:overlay;opacity:.55}   /* film grain */
+
+/* captions sit in the dark lower third, like lower thirds on film, so every face stays clear */
+.scrub .hero--film .poster{background-position:50% 40%}
+.scrub .hero--film .scene{object-position:50% 40%}
+.scrub .hero--film .scrim{background:linear-gradient(to bottom,rgba(8,8,10,.5) 0%,rgba(8,8,10,0) 15%),linear-gradient(to top,rgba(8,8,10,.94) 0%,rgba(8,8,10,.8) 26%,rgba(8,8,10,.42) 48%,rgba(8,8,10,0) 70%),radial-gradient(ellipse 120% 90% at 50% 42%,rgba(10,10,14,0) 42%,rgba(10,10,14,.5) 100%)}
+.scrub .hero--film .band{top:auto;bottom:clamp(34px,7.5vh,80px);transform:none;width:min(60vw,800px)}
+.scrub .hero--film .band .display{font-size:clamp(1.9rem,3.5vw,3.3rem)}
+.scrub .hero--film .band::before{inset:-34% -26% -46% -30%;background:radial-gradient(ellipse 78% 72% at 40% 56%,rgba(5,5,8,.74) 0%,rgba(5,5,8,.5) 46%,rgba(5,5,8,0) 78%)}
+.scrub .hero--film .kicker{margin-bottom:.8rem}
+.scrub .hero--film .band__sub{max-width:46ch;margin-top:.8rem}
+.scrub .hero--film .band__cta{margin-top:1.2rem}
+.scrub .hero--film .cue{margin-top:1.1rem}
+
+/* no scroll film (reduced motion on a wide screen): words on the left, the photograph framed on the right */
+html:not(.scrub) .hero--film .stage{gap:clamp(20px,4vw,56px)}
+html:not(.scrub) .hero--film .bands{order:1;flex:none}
+html:not(.scrub) .hero--film .poster{order:2;position:relative;inset:auto;flex:1;min-width:0;align-self:center;aspect-ratio:16/9;margin:60px var(--pad) 0 0;border-radius:18px;background-size:cover}
+html:not(.scrub) .hero--film .scrim,html:not(.scrub) .hero--film .stage::after{display:none}
+html:not(.scrub) .hero--film .band--1 .display{font-size:clamp(1.6rem,3.5vw,3.3rem)}
+
+/* phones and portrait screens: promise, button, the photograph, then the rest */
+@media (max-width:720px),(orientation:portrait) and (max-width:1024px),(orientation:portrait) and (pointer:coarse){
+  html:not(.scrub) .hero--film .stage{gap:0}
+  html:not(.scrub) .hero--film .poster{order:3;flex:none;align-self:center;width:calc(100% - 2*var(--pad));max-width:680px;aspect-ratio:16/9;margin:26px 0 32px;border-radius:14px;background:url(team-film-poster.jpg) 50% 40%/cover no-repeat;-webkit-mask-image:none;mask-image:none}
+  html:not(.scrub) .hero--film .poster::before,html:not(.scrub) .hero--film .poster::after{content:none}
+}
+
+/* ---------- the slanted portrait ---------- */
+.portrait{position:relative;flex:none;display:block;width:var(--pw);aspect-ratio:497/1024;margin:0}
+.portrait::before{content:"";position:absolute;inset:-2px;-webkit-clip-path:var(--slant);clip-path:var(--slant);background:linear-gradient(to bottom,#f4f3f0,var(--accent) 46%,rgba(255,54,0,.12))}
+.portrait img{position:relative;width:100%;height:100%;object-fit:cover;-webkit-clip-path:var(--slant);clip-path:var(--slant)}
+.duo{--pw:min(21vw,190px);display:flex;align-items:center;margin:clamp(26px,3.4vw,44px) 0 0}
+.duo .portrait + .portrait{margin-left:calc(var(--pw)*-.141 + 10px)}
+@media (max-width:900px){.duo{--pw:min(40vw,210px)}}
+
+/* ---------- about: two things, two people ---------- */
+.about--duo .spec{position:sticky;top:104px}
+@media (max-width:900px){.about--duo .spec{position:static}}
+
+/* ---------- services: type only ---------- */
+.services--team .half__title{margin-top:0}
+
+/* ---------- how it works: one photo per step, lit by the ignition ---------- */
+.how--team .how__grid{grid-template-columns:1fr;gap:clamp(30px,4vw,54px)}
+.how--team .how__intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(22px,5vw,70px);align-items:end}
+.how--team h2{max-width:16ch}
+.how--team .ignite{margin-top:0}
+.steps--photo{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.steps--photo .step{display:block;padding:14px 14px 24px}
+.step__ph{margin:0 0 18px;border-radius:10px;overflow:hidden;aspect-ratio:491/343;background:var(--panel-2)}
+.step__ph img{width:100%;height:100%;object-fit:cover;opacity:.8;transition:opacity .8s var(--ease)}
+.steps .step:nth-child(2) .step__ph img{transition-delay:.22s}
+.steps .step:nth-child(3) .step__ph img{transition-delay:.44s}
+.how.lit .step__ph img{opacity:1}
+.steps--photo .step__n{display:block;padding:0 8px 8px}
+.steps--photo .step h3,.steps--photo .step p{padding:0 8px}
+.steps--photo .step p{margin-top:.45rem}
+@media (max-width:900px){
+  .how--team .how__intro{grid-template-columns:1fr}
+  .steps--photo{grid-template-columns:1fr}
+}
+@media (min-width:560px) and (max-width:900px){.steps--photo{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- contact: the last frame of the film, reused ---------- */
+.contact--film .contact__bg{left:0;bottom:0;width:min(52%,680px);aspect-ratio:16/9;background:url(team-film-ending.jpg) center/cover no-repeat;opacity:.6;-webkit-mask-image:radial-gradient(ellipse 62% 64% at 42% 58%,#000 26%,transparent 100%);mask-image:radial-gradient(ellipse 62% 64% at 42% 58%,#000 26%,transparent 100%)}
+
+@media (prefers-reduced-motion:reduce){.step__ph img{opacity:1}}

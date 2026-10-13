@@ -1,0 +1,97 @@
+/* Digital Fuel, version 2: people first. Loaded after site.css and only changes what differs.
+   Warm blacks and the peach backdrop are sampled from the team portraits. */
+:root{
+  --canvas:#110e0c;
+  --panel:#1a1512;
+  --panel-2:#241d19;
+  --flame-blue:#ffb48a;   /* in this version the second tone is the peach behind the portraits */
+  --line:#332a25;
+  --line-strong:#5c4e45;
+  --text-secondary:#b8aca3;
+  --text-primary:#f6f0e9;
+  --slant:polygon(14.1% 0,100% 0,85.9% 100%,0 100%);   /* the lean of the original portrait panels */
+}
+.ambient::before{background:radial-gradient(closest-side,rgba(255,180,138,.06),rgba(255,180,138,0))}
+.nav::before{background:rgba(17,14,12,.86)}
+.trust{background:rgba(26,21,18,.7)}
+.spec{background:linear-gradient(160deg,rgba(36,29,25,.96),rgba(26,21,18,.96))}
+.how{background:linear-gradient(to bottom,rgba(26,21,18,0),rgba(26,21,18,.8) 16%,rgba(26,21,18,.8) 84%,rgba(26,21,18,0))}
+.tile--feature{background:linear-gradient(150deg,#2a211c,#1a1512 60%)}
+.tier--top{background:linear-gradient(170deg,#2c231e,#1a1512 55%)}
+.foot{background:rgba(13,10,9,.9)}
+.pain,.foot__legal{color:#9f9289}
+.step h3{color:#d4cac2}
+.how.lit .step p,.tier li{color:#ded5cd}
+
+/* ---------- the slanted portrait: signature of this version ---------- */
+.portrait{position:relative;flex:none;display:block;width:var(--pw);aspect-ratio:497/1024;margin:0}
+.portrait::before{content:"";position:absolute;inset:-2px;-webkit-clip-path:var(--slant);clip-path:var(--slant);background:linear-gradient(to bottom,#ffc7a3,var(--accent) 42%,rgba(255,54,0,.12));opacity:var(--rim,1)}
+.portrait img{position:relative;width:100%;height:100%;object-fit:cover;-webkit-clip-path:var(--slant);clip-path:var(--slant)}
+.portrait::after{content:"";position:absolute;inset:-2px;-webkit-clip-path:var(--slant);clip-path:var(--slant);background:var(--canvas);opacity:var(--dim,0);pointer-events:none}
+.duo,.people{display:flex;align-items:center}
+.duo{--pw:min(19vw,300px);flex:none}
+.duo .portrait + .portrait{margin-left:calc(var(--pw)*-.141 + 12px)}
+
+/* ---------- hero: two portraits instead of the drop ---------- */
+.hero--team .stage{justify-content:space-between;gap:clamp(20px,4vw,60px);padding-right:var(--pad)}
+.hero--team .band::before{display:none}
+.hero--team .duo{position:relative;z-index:2;margin-top:40px}
+.hero--team .stage::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 46% 58% at 74% 52%,rgba(255,96,40,.15),rgba(255,96,40,0) 70%)}
+
+/* scroll story: the planner steps forward on "the spark", the caller on "the steady flame", then they stand together */
+.scrub .hero--team .stage{padding-right:0}
+.scrub .hero--team .band{width:min(44vw,640px)}
+.scrub .hero--team .band .display{font-size:clamp(2.1rem,4.25vw,3.95rem)}
+.scrub .hero--team .duo{--pw:min(21vw,320px,calc((100vh - 230px)/2.06));position:absolute;right:calc(var(--pad) + 3vw);top:50%;margin:0;transform:translateY(-50%);animation:duoIn 1.1s .15s var(--ease) backwards;
+  --fs:clamp(0,min(calc((var(--p,0) - .24)*25),calc((.5 - var(--p,0))*25)),1);
+  --ff:clamp(0,min(calc((var(--p,0) - .5)*25),calc((.75 - var(--p,0))*25)),1);
+  --fu:clamp(0,calc((var(--p,0) - .74)*8),1)}
+@keyframes duoIn{from{opacity:0;transform:translateY(-46%)}}
+.scrub .hero--team .portrait{will-change:transform}
+.scrub .hero--team .portrait--call{--dim:calc(.62*var(--fs));--rim:calc(1 - .75*var(--fs));transform:translate3d(calc(var(--fu)*4px),calc((1 - var(--p,0))*34px),0) scale(calc(1 + .05*var(--ff) - .04*var(--fs)))}
+.scrub .hero--team .portrait--plan{--dim:calc(.62*var(--ff));--rim:calc(1 - .75*var(--ff));transform:translate3d(calc(var(--fu)*-4px),calc((1 - var(--p,0))*-34px),0) scale(calc(1 + .05*var(--fs) - .04*var(--ff)))}
+
+/* phones and portrait screens: promise, button, the two of them, then the rest */
+@media (max-width:720px),(orientation:portrait) and (max-width:1024px),(orientation:portrait) and (pointer:coarse){
+  html:not(.scrub) .hero--team .stage{gap:0;padding-right:0}
+  html:not(.scrub) .hero--team .duo{order:3;--pw:min(43vw,290px);align-self:center;margin:22px 0 36px}
+}
+
+/* ---------- about: the whole team at the table ---------- */
+.about--team h2{max-width:22ch}
+.about__photo{margin:clamp(26px,4vw,52px) 0 0;border-radius:20px;overflow:hidden;background:var(--panel)}
+.about__photo img{width:100%;height:auto}
+.about--team .about__grid{margin-top:clamp(26px,4vw,48px)}
+.about--team .about__grid .lede{margin-top:0}
+@media (min-width:901px){.about--team .spec{position:relative;z-index:2;margin-top:clamp(-170px,-11vw,-90px);box-shadow:0 30px 80px -30px rgba(0,0,0,.85)}}
+
+/* ---------- services: no fire imagery here, the type carries it ---------- */
+.services--team .half__title{margin-top:0}
+
+/* ---------- how it works: one photo per step, lit by the ignition ---------- */
+.how--team .how__grid{grid-template-columns:1fr;gap:clamp(30px,4vw,54px)}
+.how--team .how__intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(22px,5vw,70px);align-items:end}
+.how--team h2{max-width:16ch}
+.how--team .ignite{margin-top:0}
+.steps--photo{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.steps--photo .step{display:block;padding:14px 14px 24px}
+.step__ph{margin:0 0 18px;border-radius:10px;overflow:hidden;aspect-ratio:491/343;background:var(--panel-2)}
+.step__ph img{width:100%;height:100%;object-fit:cover;opacity:.8;transition:opacity .8s var(--ease)}
+.steps .step:nth-child(2) .step__ph img{transition-delay:.22s}
+.steps .step:nth-child(3) .step__ph img{transition-delay:.44s}
+.how.lit .step__ph img{opacity:1}
+.steps--photo .step__n{display:block;padding:0 8px 8px}
+.steps--photo .step h3,.steps--photo .step p{padding:0 8px}
+.steps--photo .step p{margin-top:.45rem}
+@media (max-width:900px){
+  .how--team .how__intro{grid-template-columns:1fr}
+  .steps--photo{grid-template-columns:1fr}
+}
+@media (min-width:560px) and (max-width:900px){.steps--photo{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- contact: the people you will talk to ---------- */
+.people{--pw:104px;gap:22px;margin:2.2rem 0 0}
+.people .portrait + .portrait{margin-left:calc(var(--pw)*-.141 - 14px)}
+.people figcaption{max-width:16ch;color:var(--text-secondary)}
+
+@media (prefers-reduced-motion:reduce){.step__ph img{opacity:1}}
