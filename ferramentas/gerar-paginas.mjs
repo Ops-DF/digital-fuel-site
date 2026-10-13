@@ -452,7 +452,7 @@ ${band(4, 0.76, 1, 'rise', `          <p class="display split">${e(t.hero.b4[0])
         <p class="eyebrow mono">${e(t.about.eyebrow)}</p>
         <h2>${e(t.about.h2)}</h2>
         <p class="lede">${e(t.about.p)}</p>
-        <figure class="duo"><span class="portrait"><img src="${A}team-call-bw.jpg" alt="${e(t.team.callAlt)}" width="497" height="1024" loading="lazy" decoding="async"></span><span class="portrait"><img src="${A}team-plan-bw.jpg" alt="${e(t.team.planAlt)}" width="497" height="1024" loading="lazy" decoding="async"></span></figure>
+        <figure class="duo"><span class="portrait"><img src="${A}team-call.jpg" alt="${e(t.team.callAlt)}" width="497" height="1024" loading="lazy" decoding="async"></span><span class="portrait"><img src="${A}team-plan.jpg" alt="${e(t.team.planAlt)}" width="497" height="1024" loading="lazy" decoding="async"></span></figure>
       </div>
       <aside class="spec" aria-labelledby="spec-title" data-reveal>
         <h3 id="spec-title">${e(t.about.specTitle)}</h3>

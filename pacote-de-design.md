@@ -346,10 +346,11 @@ Pedido de 13/10/2026: outra versão com a skill, com imagens da equipe e uma ten
 - **O vídeo:** a foto dos quatro na mesa ganhou vida no Veo 3.1 Lite, o único modelo de vídeo que o plano gratuito liberou. Foram duas gerações de 9 créditos. A primeira, sem logotipo na tela, foi trocada a pedido pela segunda, com o logotipo. Para as letras não entortarem, uma versão nítida do logotipo foi colocada no monitor do quadro inicial antes de gerar.
 - **Consentimento:** em 13/10/2026 a Digital Fuel confirmou que as quatro pessoas concordam em aparecer em vídeo feito por IA. Os rostos de frente e os sorrisos foram criados pela IA, porque na foto três delas estão de perfil.
 - **O corte aprovado:** os 3 primeiros segundos. O scroll leva o time de trabalhando até olhando para o visitante, e o olhar chega junto com a frase "no mesmo time" e o botão. Brutos em `review/v3/`.
-- **Encode de scrub:** 1280 x 720, interpolado para 48 quadros por segundo (144 posições de scroll), keyframe a cada 8 quadros, sem áudio, 1,4 MB. Baixado inteiro como Blob, com trava de seek. No servidor local, que não aceita download parcial, o scrub funciona.
-- **Mundo visual:** documentário em preto e branco, com o laranja da chama como única cor da página. Grão de filme por cima do vídeo.
+- **Encode de scrub:** 1280 x 720, interpolado para 48 quadros por segundo (141 posições de scroll), keyframe a cada 8 quadros, sem áudio, 1,6 MB em cores. Baixado inteiro como Blob, com trava de seek. No servidor local, que não aceita download parcial, o scrub funciona.
+- **Mundo visual:** documentário sobre pretos neutros, com o vídeo e as fotos em cores. Grão de filme por cima do vídeo.
+- **Cores, pedido de 13/10/2026:** nada no site fica em preto e branco. A foto dos quatro na mesa só existia em preto e branco, então foi colorida por IA com as outras fotos do escritório como referência. Para nenhum rosto ser redesenhado, a luz e o detalhe vêm da foto original e só a cor vem da IA. O vídeo aprovado foi colorido do mesmo jeito, quadro a quadro, com três quadros coloridos de referência (início, meio e fim) e a cor de cada pessoa mudando no momento em que ela vira o rosto. Uma tentativa de gerar o vídeo de novo em cores foi descartada porque a IA inventou duas pessoas a mais. Arquivos de trabalho em `review/cor/`.
 - **Legendas:** no terço de baixo, como legendas de filme, para nenhum rosto ficar coberto. O menu ganha uma barra própria sobre o vídeo.
-- **Sobre:** os dois retratos em preto e branco, porque a agência é feita de duas coisas.
+- **Sobre:** os dois retratos, em cores, porque a agência é feita de duas coisas.
 - **Como funciona:** um passo, uma foto, como na versão 2.
 - **Contato:** o último quadro do filme, com o time olhando, reaparece esmaecido no canto.
 - **Celular e movimento reduzido:** a fotografia real, parada. O vídeo não é baixado.

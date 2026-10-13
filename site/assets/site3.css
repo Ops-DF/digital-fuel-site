@@ -1,5 +1,5 @@
 /* Digital Fuel, version 3: the team on film. Loaded after site.css and only changes what differs.
-   A black and white documentary world, with the flame as the only colour on the page. */
+   A documentary world on neutral blacks: the film and the photographs carry the colour. */
 :root{
   --canvas:#0d0d0e;
   --panel:#151516;
